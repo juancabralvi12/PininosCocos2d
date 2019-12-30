@@ -51,10 +51,44 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    
+    CCLOG("visibleSize.width: %f", visibleSize.width);
+    CCLOG("visibleSize.height: %f", visibleSize.height);
+    CCLOG("origin.x %f", origin.x);
+    CCLOG("origin.y %f", origin.y);
+    
     mySprite = Sprite::create("CloseNormal.png");
     mySprite->setPosition(Point((visibleSize.width/2) + origin.x, (visibleSize.height / 2) + origin.y));
     this->addChild(mySprite);
+
+    auto moveByAction = MoveBy::create(10, Point(100,0));
+    //mySprite->runAction(moveByAction);
+    
+    auto moveToAction = MoveTo::create(1, Point(100,300));
+    //mySprite->runAction(moveToAction);
+    
+    auto jumpByAction = JumpBy::create(3, Point(100,0), 30, 10);
+    //mySprite->runAction(jumpByAction);
+    
+    
+    int height = 10;
+    int jumps = 3;
+    int jumpDistance = 200;
+    auto jumpToAction = JumpTo::create(3, Point(mySprite->getPosition().x + jumpDistance, mySprite->getPosition().y), height, jumps);
+    //mySprite->runAction(jumpToAction);
+    
+    ccBezierConfig bezier;
+    bezier.controlPoint_1 = Point(mySprite->getPosition().x+30, mySprite->getPosition().y + 50);
+    bezier.controlPoint_2 = Point(mySprite->getPosition().x+50, mySprite->getPosition().y + 70);
+    bezier.endPosition = Point(mySprite->getPosition().x+100, mySprite->getPosition().y + 20);
+    
+    auto bezierToAction = BezierTo::create(2, bezier);
+    //mySprite->runAction(action);
+    
+    int padding = 10;
+    auto place = Place::create(Point(origin.x + padding ,origin.y + padding));
+    //mySprite-> runAction(place);
+    
     return true;
 }
 

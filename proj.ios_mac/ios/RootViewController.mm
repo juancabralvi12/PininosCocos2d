@@ -72,7 +72,6 @@
     [super viewDidDisappear:animated];
 }
 
-
 // For ios6, use supportedInterfaceOrientations & shouldAutorotate instead
 #ifdef __IPHONE_6_0
 - (NSUInteger) supportedInterfaceOrientations{
@@ -83,6 +82,8 @@
 - (BOOL) shouldAutorotate {
     return YES;
 }
+
+
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
